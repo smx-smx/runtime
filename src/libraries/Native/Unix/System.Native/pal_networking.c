@@ -504,7 +504,7 @@ int32_t SystemNative_GetNameInfo(const uint8_t* address,
                              (uint32_t)hostLength,
                              (char*)service,
                              (uint32_t)serviceLength,
-                             (int)nativeFlags);
+                             (NativeFlagsType)nativeFlags);
     }
     else
     {
@@ -517,7 +517,7 @@ int32_t SystemNative_GetNameInfo(const uint8_t* address,
                              (uint32_t)hostLength,
                              (char*)service,
                              (uint32_t)serviceLength,
-                             (int)nativeFlags);
+                             (NativeFlagsType)nativeFlags);
     }
 
     return ConvertGetAddrInfoAndGetNameInfoErrorsToPal(result);
@@ -728,7 +728,7 @@ int32_t SystemNative_GetPort(const uint8_t* socketAddress, int32_t socketAddress
                 return Error_EFAULT;
             }
 
-            *port = ntohs(((const struct sockaddr_in*)socketAddress)->sin_port);
+            *port = (uint16_t)ntohs(((const struct sockaddr_in*)socketAddress)->sin_port);
             return Error_SUCCESS;
         }
 
@@ -739,7 +739,7 @@ int32_t SystemNative_GetPort(const uint8_t* socketAddress, int32_t socketAddress
                 return Error_EFAULT;
             }
 
-            *port = ntohs(((const struct sockaddr_in6*)socketAddress)->sin6_port);
+            *port = (uint16_t)ntohs(((const struct sockaddr_in6*)socketAddress)->sin6_port);
             return Error_SUCCESS;
         }
 
@@ -770,7 +770,7 @@ int32_t SystemNative_SetPort(uint8_t* socketAddress, int32_t socketAddressLen, u
                 return Error_EFAULT;
             }
 
-            ((struct sockaddr_in*)socketAddress)->sin_port = htons(port);
+            ((struct sockaddr_in*)socketAddress)->sin_port = (in_port_t)htons(port);
             return Error_SUCCESS;
         }
 
@@ -781,7 +781,7 @@ int32_t SystemNative_SetPort(uint8_t* socketAddress, int32_t socketAddressLen, u
                 return Error_EFAULT;
             }
 
-            ((struct sockaddr_in6*)socketAddress)->sin6_port = htons(port);
+            ((struct sockaddr_in6*)socketAddress)->sin6_port = (in_port_t)htons(port);
             return Error_SUCCESS;
         }
 
