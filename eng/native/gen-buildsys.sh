@@ -74,7 +74,12 @@ if [[ "$CROSSCOMPILE" == "1" ]]; then
     if [[ -n "$tryrun_dir" ]]; then
         cmake_extra_defines="$cmake_extra_defines -C $tryrun_dir/tryrun.cmake"
     fi
-    cmake_extra_defines="$cmake_extra_defines -DCMAKE_TOOLCHAIN_FILE=$scriptroot/../common/cross/toolchain.cmake"
+
+    if [ -z "$TOOLCHAIN_FILE" ]; then
+        TOOLCHAIN_FILE="$scriptroot/../common/cross/toolchain.cmake"
+    fi
+
+    cmake_extra_defines="$cmake_extra_defines -DCMAKE_TOOLCHAIN_FILE=$TOOLCHAIN_FILE"
 fi
 
 if [[ "$build_arch" == "armel" ]]; then
