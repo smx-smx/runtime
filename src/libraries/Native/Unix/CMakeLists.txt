@@ -27,6 +27,8 @@ add_compile_options(-Wno-typedef-redefinition)
 add_compile_options(-Wno-c11-extensions)
 add_compile_options(-Wno-unknown-pragmas)
 add_compile_options(-Wno-atomic-alignment)
+# Required for clang versions that don't understand -Wno-atomic-alignment
+add_compile_options(-Wno-unknown-warning-option)
 add_compile_options(-I${CMAKE_CURRENT_SOURCE_DIR}/Common)
 add_compile_options(-I${CMAKE_CURRENT_BINARY_DIR}/Common)
 add_compile_options(-g)
