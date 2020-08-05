@@ -1674,6 +1674,7 @@ CorUnix::InternalSetThreadDescription(
         goto InternalSetThreadDescriptionExit;
     }
 
+#if HAVE_PTHREAD_SETNAME_MP
     // Null terminate early.
     // pthread_setname_np only accepts up to 16 chars.
     if (nameSize > 15)
@@ -1687,6 +1688,7 @@ CorUnix::InternalSetThreadDescription(
     {
         palError = ERROR_INTERNAL_ERROR;
     }
+#endif
 
 InternalSetThreadDescriptionExit:
 
