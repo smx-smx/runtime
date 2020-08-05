@@ -3,6 +3,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set( GCINFO_SOURCES
   arraylist.cpp
   gcinfoencoder.cpp
+  simplerhash.cpp
 )
 
 
@@ -17,7 +18,7 @@ endif(CLR_CMAKE_TARGET_ARCH_I386)
 convert_to_absolute_path(GCINFO_SOURCES ${GCINFO_SOURCES})
 
 add_library_clr(gcinfo
-    STATIC
+    OBJECT
     ${GCINFO_SOURCES}
 )
 

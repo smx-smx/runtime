@@ -1,6 +1,5 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
-// See the LICENSE file in the project root for more information.
 //*****************************************************************************
 // File: debugger.cpp
 //
@@ -3459,14 +3458,14 @@ void Debugger::getBoundaries(MethodDesc * md,
 
     if (pModule == SystemDomain::SystemModule())
     {
-        // We don't look up PDBs for mscorlib.  This is not quite right, but avoids
+        // We don't look up PDBs for CoreLib.  This is not quite right, but avoids
         // a bootstrapping problem.  When an EXE loads, it has the option of setting
         // the COM apartment model to STA if we need to.  It is important that no
         // other Coinitialize happens before this.  Since loading the PDB reader uses
         // com we can not come first.  However managed code IS run before the COM
         // apartment model is set, and thus we have a problem since this code is
         // called for when JITTing managed code.    We avoid the problem by just
-        // bailing for mscorlib.
+        // bailing for CoreLib.
         return;
     }
 
@@ -12896,8 +12895,8 @@ private:
 // is a valid Remap Breakpoint location (not in a special offset, must be empty stack, and not in a handler.
 //
 EnCSequencePointHelper::EnCSequencePointHelper(DebuggerJitInfo *pJitInfo)
-    : m_pOffsetToHandlerInfo(NULL),
-      m_pJitInfo(pJitInfo)
+    : m_pJitInfo(pJitInfo),
+    m_pOffsetToHandlerInfo(NULL)      
 {
     CONTRACTL
     {
