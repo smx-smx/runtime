@@ -82,10 +82,6 @@ if [[ "$CROSSCOMPILE" == "1" ]]; then
     cmake_extra_defines="$cmake_extra_defines -DCMAKE_TOOLCHAIN_FILE=$TOOLCHAIN_FILE"
 fi
 
-if [[ "$build_arch" == "armel" ]]; then
-    cmake_extra_defines="$cmake_extra_defines -DARM_SOFTFP=1"
-fi
-
 cmake_command=$(command -v cmake)
 
 if [[ "$scan_build" == "ON" && -n "$SCAN_BUILD_COMMAND" ]]; then
