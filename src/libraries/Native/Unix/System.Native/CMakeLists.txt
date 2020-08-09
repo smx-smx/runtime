@@ -51,7 +51,7 @@ if (GEN_SHARED_LIB)
         ${VERSION_FILE_PATH}
     )
     if (CLR_CMAKE_TARGET_LINUX AND NOT CLR_CMAKE_TARGET_ANDROID)
-        target_link_libraries(System.Native rt)
+        target_link_libraries(System.Native rt atomic)
     elseif (CLR_CMAKE_TARGET_FREEBSD)
         target_link_libraries(System.Native pthread)
         if (HAVE_INOTIFY)
