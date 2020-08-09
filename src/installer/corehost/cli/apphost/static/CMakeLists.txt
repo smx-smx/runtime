@@ -171,7 +171,7 @@ else()
     # Additional requirements for System.Native
     if (CLR_CMAKE_TARGET_LINUX AND NOT CLR_CMAKE_TARGET_ANDROID)
         set(NATIVE_LIBS_EXTRA
-          rt
+          rt atomic
         )
     # elseif (CLR_CMAKE_TARGET_FREEBSD)
     #     set(NATIVE_LIBS_EXTRA
